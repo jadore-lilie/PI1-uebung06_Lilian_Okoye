@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.target=RingBufferTest
+comment0.text=\n\ Diese\ Klasse\ definiert\ die\ Tests\ f\u00FCr\ die\ Klasse\ <Klasse\ erg\u00E4nzen>.\n\n\ @author\ Lilian\ Okoye\n
+comment1.params=
+comment1.target=void\ setUp()
+comment2.params=
+comment2.target=void\ testPop()
+comment3.params=
+comment3.target=void\ testPeek()
+comment4.params=
+comment4.target=void\ testsize()
+comment5.params=
+comment5.target=void\ RingBufferTest()
+numComments=6
