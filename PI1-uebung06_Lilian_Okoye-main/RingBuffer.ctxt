@@ -1,0 +1,22 @@
+#BlueJ class context
+comment0.target=RingBuffer
+comment0.text=\n\ Die\ Klasse\ implementiert\ einen\ Ringpuffer,\ d.h.\ einen\ Puffer,\ der\ eine\n\ bestimmte\ Menge\ von\ Werten\ zwischenspeichern\ kann.\ Man\ kann\ mit\n\ {@link\ push(int)}\ Werte\ hinzuf\u00FCgen\ und\ mit\ {@link\ pop()}\ wieder\ entnehmen.\n\ Dabei\ liefert\ {@link\ pop()}\ die\ Werte\ in\ derselben\ Reihenfolge\ zur\u00FCck,\ in\n\ der\ sie\ mit\ {@link\ push(int)}\ eingef\u00FCgt\ wurden,\ d.h.\ {@link\ pop()}\ liefert\n\ immer\ das\ Element\ zur\u00FCck,\ das\ schon\ am\ l\u00E4ngsten\ im\ Puffer\ gespeichert\ ist.\n\ Wird\ ein\ neues\ Element\ in\ den\ Puffer\ eingef\u00FCgt,\ wenn\ seine\ Kapazit\u00E4t\ bereits\n\ erreicht\ ist,\ geht\ das\ \u00E4lteste\ Element\ verloren.\ Es\ ist\ nicht\ erlaubt,\ auf\n\ ein\ Element\ zuzugreifen,\ wenn\ der\ Puffer\ leer\ ist.\ In\ dem\ Fall\ ist\ das\n\ Verhalten\ undefiniert.\n
+comment1.params=capacity
+comment1.target=RingBuffer(int)
+comment1.text=\n\ Erzeugt\ einen\ Ringpuffer.\n\ @param\ capacity\ Die\ maximale\ Anzahl\ von\ Eintr\u00E4gen,\ die\ gepuffert\ werden\ k\u00F6nnen.\n
+comment2.params=value
+comment2.target=void\ push(int)
+comment2.text=\n\ F\u00FCgt\ ein\ neues\ Element\ in\ den\ Ringpuffer\ ein.\n\ @param\ value\ Der\ Wert,\ der\ eingef\u00FCgt\ werden\ soll.\n
+comment3.params=
+comment3.target=int\ peek()
+comment3.text=\n\ Liefert\ das\ \u00E4lteste\ Element\ aus\ dem\ Ringpuffer\ zur\u00FCck,\ ohne\ es\ zu\ entnehmen.\n\ @return\ Das\ \u00E4lteste\ Element\ im\ Ringpuffer.\n
+comment4.params=
+comment4.target=int\ pop()
+comment4.text=\n\ Entnimmt\ das\ \u00E4lteste\ Element\ aus\ dem\ Ringpuffer.\n\ @return\ Das\ Element,\ das\ entnommen\ wurde.\n
+comment5.params=
+comment5.target=int\ size()
+comment5.text=\n\ Liefert\ die\ Anzahl\ der\ Elemente\ zur\u00FCck,\ die\ sich\ im\ Puffer\ befinden,\ d.h.\ die\n\ mit\ {@link\ pop()}\ entnommen\ werden\ k\u00F6nnten.\n\ @return\ Die\ Anzahl\ der\ belegten\ Eintr\u00E4ge\ im\ Puffer.\n
+comment6.params=
+comment6.target=int\ capacity()
+comment6.text=\n\ Gibt\ die\ maximale\ Kapazit\u00E4t\ des\ Ringbuffers\ zur\u00FCck.\n\ Die\ Kapazit\u00E4t\ entspricht\ der\ L\u00E4nge\ des\ internen\ Arrays\ \u201Ebuffer\u201C,\n\ also\ der\ maximalen\ Anzahl\ an\ Elementen,\ die\ gespeichert\ werden\ k\u00F6nnen.\n\ @return\ die\ Kapazit\u00E4t\ des\ Ringbuffers\n
+numComments=7
