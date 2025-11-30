@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=Game
+comment0.text=\n\ Eine\ Klasse,\ die\ drei\ Klassenmethoden\ kapselt,\ die\ f\u00FCr\ Spiele\ ben\u00F6tigt\ werden.\n\n\ @author\ Thomas\ R\u00F6fer\n
+comment1.params=
+comment1.target=int\ getNextKey()
+comment1.text=\n\ Warten\ auf\ und\ Liefern\ der\ n\u00E4chsten\ gedr\u00FCckten\ Taste.\n\ @return\ Ein\ Tastencode,\ wie\ sie\ in\ der\ Klasse\ {@link\ java.awt.event.KeyEvent}\n\ \ \ \ \ \ \ \ \ definiert\ sind.\n
+comment2.params=millis
+comment2.target=void\ sleep(int)
+comment2.text=\n\ Warten\ f\u00FCr\ eine\ bestimmte\ Zeit.\n\ @param\ millis\ Die\ Anzahl\ Millisekunden,\ die\ gewartet\ wird.\ Die\ tats\u00E4chliche\n\ \ \ \ \ \ \ \ \ Wartezeit\ kann\ etwas\ l\u00E4nger\ sein.\n
+comment3.params=fileName
+comment3.target=void\ playSound(java.lang.String)
+comment3.text=\n\ Abspielen\ einer\ Sound-Datei.\n\ @param\ fileName\ Der\ Name\ der\ Datei.\ Sie\ wird\ im\ Unterverzeichnis\ "sounds"\n\ \ \ \ \ \ \ \ \ gesucht.\ Wenn\ keine\ Dateiendung\ angegeben\ wurde,\ wird\ ".wav"\n\ \ \ \ \ \ \ \ \ angeh\u00E4ngt.\n\ @throws\ IllegalArgumentException\ Die\ Datei\ konnte\ nicht\ gefunden\ werden\n\ \ \ \ \ \ \ \ \ oder\ hat\ kein\ akzeptiertes\ Format.\n
+numComments=4

@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=Walker
+comment0.text=\n\ Die\ Klasse\ Walker\ steuert\ das\ Verhalten\ eines\ NPC,\ der\ zun\u00E4chst\ normal\n\ eine\ Strecke\ abl\u00E4uft,\ sich\ aber\ bei\ Sichtkontakt\ mit\ dem\ Spieler\ in\ einen\n\ Verfolgermodus\ schaltet\ und\ dessen\ Bewegungen\ zeitverz\u00F6gert\ nachgeht.\n\ \n\n\ @author\ Thomas\ R\u00F6fer\n
+comment1.params=avatar\ maxSteps\ stepsSoFar
+comment1.target=Walker(GameObject,\ int,\ int)
+comment1.text=\n\ Konstruktor\ f\u00FCr\ einen\ Walker.\n\n\ @param\ avatar\ \ \ \ \ \ Das\ NPC-Objekt\n\ @param\ maxSteps\ \ \ \ Maximale\ Anzahl\ Schritte,\ bevor\ der\ NPC\ umdreht\n\ @param\ stepsSoFar\ \ Bereits\ gemachte\ Schritte\ zu\ Beginn\n
+comment2.params=player
+comment2.target=void\ act(GameObject)
+comment2.text=\n\ Dies\ ist\ die\ Hauptmethode\ des\ NPC,\ die\ einmal\ pro\ Spieltick\ aufgerufen\ wird.\n\ Sie\ steuert\:\n\ \ -\ Normalbewegung\n\ \ -\ Umschalten\ in\ den\ Verfolgermodus\n\ \ -\ Bewegung\ im\ Verfolgermodus\n
+comment3.params=
+comment3.target=void\ Walking()
+comment3.text=\n\ F\u00FChrt\ eine\ Bewegung\ um\ genau\ ein\ Feld\ in\ Blickrichtung\ des\ NPC\ aus.\n\ Rotation\:\ 0\ \=\ rechts,\ 1\ \=\ unten,\ 2\ \=\ links,\ 3\ \=\ oben\n
+comment4.params=player
+comment4.target=boolean\ Verfolgermodus(GameObject)
+comment4.text=\n\ Pr\u00FCft,\ ob\ die\ Spielfigur\ in\ Sichtweite\ des\ NPC\ liegt\ und\ aktiviert\ gegebenenfalls\n\ den\ Verfolgermodus.\ Befindet\ sich\ der\ Spieler\ im\ Sichtfeld,\ wird\ die\ aktuelle\n\ Rotation\ des\ Spielers\ in\ den\ Ringpuffer\ eingetragen,\ damit\ der\ NPC\ diese\ sp\u00E4ter\n\ nachahmen\ kann.\n
+comment5.params=aX\ aY\ pX\ pY
+comment5.target=int\ rotationZumSpieler(int,\ int,\ int,\ int)
+comment5.text=\n\ Berechnet\ eine\ Rotation,\ die\ den\ NPC\ in\ Richtung\ des\ Spielers\ drehen\ l\u00E4sst.\n\ PRIORIT\u00C4T\:\ zuerst\ horizontal,\ dann\ vertikal.\n\n\ @return\ 0\ \=\ rechts,\ 1\ \=\ unten,\ 2\ \=\ links,\ 3\ \=\ oben\n
+numComments=6

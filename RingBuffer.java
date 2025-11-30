@@ -13,13 +13,13 @@
 class RingBuffer
 {
     /** Der eigentliche Puffer, der die Werte speichert. */
-    private final int[] buffer;
+    public final int[] buffer;
 
     /** Der Kopf des Ringpuffers, d.h. die Stelle, an der als Nächstes etwas gelesen wird. */
-    private int head = 0;
+    public int head = 0; // = bis 2 ist richtig 
 
     /** Der Füllstand des Puffers. */
-    private int entries = 0;
+    public int entries = 0;
 
     /**
      * Erzeugt einen Ringpuffer.
@@ -36,8 +36,8 @@ class RingBuffer
      */
     void push(final int value)
     {
-        if (buffer.length > 0) {
-            if (entries > buffer.length) {
+        if (buffer.length >= 0) {
+            if(entries > buffer.length) {
                 pop();
             }
             buffer[(head + entries++) % buffer.length] = value;
@@ -59,6 +59,10 @@ class RingBuffer
      */
     int pop()
     {
+        // Im Fall eines leeren Buffers, wird die größe null zurückgeliefert
+        if (entries == 0){
+            return 0;
+        }
         final int value = peek();
         head = (head + 1) % buffer.length;
         --entries;
@@ -73,5 +77,15 @@ class RingBuffer
     int size()
     {
         return entries;
+    }
+    
+    /**
+     * Gibt die maximale Kapazität des Ringbuffers zurück.
+     * Die Kapazität entspricht der Länge des internen Arrays „buffer“,
+     * also der maximalen Anzahl an Elementen, die gespeichert werden können.
+     * @return die Kapazität des Ringbuffers
+     */
+    int capacity() {
+        return buffer.length; 
     }
 }
