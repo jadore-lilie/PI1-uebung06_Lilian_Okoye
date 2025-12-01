@@ -1,0 +1,103 @@
+\documentclass{pi1}
+\usepackage{ulem}
+
+\begin{document}
+
+\maketitle{6}{Linus Hossfeld}{Lilian Okoye}
+
+\section{Ein Ring, sie zu testen ...}
+
+\subsection{Testfälle definieren}
+
+Die von mir erstelle Testklasse für RingBuffers, dient zur Überprüfung der korrekten Implementierung der grundlegenden Methoden des Puffers. 
+
+Getestet wurden dabei folgenden Funktionalitäten: 
+
+• das Einfügen eines Element (push()) un der korrekten Erhöhung der Puffergröße (size())
+
+• das Entfernen und Zurückgeben des ältesten Element (pop()), sowie die Aktualisierung der Größe
+
+• das Auslesen des ältesten Elements ohne Entfernen (peek())
+
+• das Verhalten des Buffers bei Erreichen der Kapazität
+
+• das Verhalten der Methoden bei einem leeren Buffer
+
+• der allgemeine Verhalten des RingBuffers\\
+
+\lstinputlisting[firstnumber=12, firstline=12,lastline=13]{PI1/RingBufferTest.java} 
+\lstinputlisting[firstnumber=20, firstline=20,lastline=109]{PI1/RingBufferTest.java} 
+
+\newpage
+Während der Erstellung der Testklasse stellte ich ein Fehler fest. 
+Beim Aufruf der Methode pop() auf einem leeren Buffer wurde die Größe fälschlicherweise um 1 reduziert. Dadurch lieferte size() anschließend einen negativen Wert (–1) zurück, was selbstverständlich nicht dem erwarteten Verhalten eines Ringpuffers entspricht. Dieser Fehler wurde durch entsprechende Tests (insbesondere testPopEmpty()) sichtbar gemacht und konnte anschließend korrigiert werden.
+
+In Methode implizierte Korregierung: 
+
+\lstinputlisting[firstnumber=13, firstline=13,lastline=14]{PI1/RingBuffer.java} 
+\lstinputlisting[firstnumber=60, firstline=60,lastline=65]{PI1/RingBuffer.java} 
+\lstinputlisting[firstnumber=91, firstline=91,lastline=91]{PI1/RingBuffer.java} 
+
+
+\subsection{Teststärke prüfen}
+
+Die von mir erstellte Testklasse sollte im nächsten durch 10 gezielt eingebaute fehlerhafte Implementierungen des RingBuffers überprüft werden.
+Ziel ist es zu unteruschen, ob die Testfälle in der Lage sind, die eingefügten Fehler zuverlässig zu erkennen und entsprechend fehlzuschlagen. 
+Dadurch wird sichtbar, wie robust, aussagekräftig und vollständig die Testabdeckung ist.
+ 
+ Im Folgenden sind die eingebauten Fehler sowie jeweils eine Begründung, warum der entsprechende Testfall fehlschlägt, aufgeführt:
+
+\begin{table}[ht]
+	\centering
+	\begin{tabular}{|l|l|l|l|}
+		\hline  \textbf{Nr} & \textbf{Änderungen} & \textbf{Test Bestanden}   \\
+		\hline {1} & {pop(): //--entries;}&{nein}  \\
+		\hline {2} & {if (buffer.length < 0)}&{nein}  \\
+		\hline {3} &   {if(entries != buffer.length)}&{nein} \\
+		\hline {4} &  {pop(): //head = (head + 1) \% buffer.length; }&{nein} \\
+		\hline {5} &  {head = 2} & {nein} \\
+		\hline {6} &  {pop(): // -- entries;} &{nein} \\
+		\hline {7} &  {pop(): if (entries == 0) return -1; }&{nein}  \\
+		\hline {8} &  {peek() = pop()} &{nein} \\
+		\hline {9} &  {size(): return buffer.length;} &{nein}\\
+    	\hline {10} &  {peek(): return buffer[(head + entries - 1) \% buffer.length];} &{nein} \\
+		
+		\hline
+	\end{tabular}
+\end{table}
+\uline{Begründungen:} 
+\begin{enumerate}
+	\item Pop() verändert im Test die größe des Buffers / entries  nicht, die größe des Buffers steigt. 
+	\item Die Bedienung wird nicht erfüllt und es werden keine Werte im Buffer beim Test eingefügt. 
+	\item Push() wird dank der Bedienung, beim vollen Buffer nicht im Test ausgeführt. 
+	\item Die erste Einfügung landet im Test nie an der richtigen Stelle, pop() gibt falsche Werte zurück und die Berechnung von size() Ist unkorrekt. 
+	\item Der älteste Wert im Buffer wird nicht im Test aktualisiert. 
+	\item Die größe bleibt zu hoch, die Test erwarten, dass size um 1 sinkt.
+	\item Der Test erwartet, bei leerem Buffer 0 und nicht -1. 
+	\item peek() sollte nicht Elemeten aus dem Buffer entfernen, der Test erwartet eine unveränderte size. 
+	\item Die Größe des Buffers wird mit Kapazität verwechselt und liefert die Test nicht die tatsächlichen größe. 
+	\item Im Test liefert peek() der zuletzt eingefügten Wert und nicht das älteste. 
+\end{enumerate}
+
+\section{Spurhund}
+
+Die bestehende Walker-Klasse wurde um einen Verfolgermodus erweitert.
+
+Die Methode Verfolgermodus() prüft, ob sich die Spielfigur innerhalb der definierten Sichtweite und Blickrichtung des NPC befindet. Sobald dies zutrifft, aktiviert der NPC den Verfolgungszustand und speichert die vom Spieler ausgeführten Bewegungen im Ringpuffer.
+Bei jedem eigenen Schritt entnimmt der NPC den ältesten gespeicherten Bewegung  und wiederholt sie.
+Dadurch folgt er dem zuvor zurückgelegten Weg der Spielfigur zeitversetzt. Treffen NPC und Spielfigur schließlich auf dieselbe Position, wird der Spieler ausgeblendet und ein Sound abgespielt.\\
+
+• Erweiterte Verfolgermodus Methode: 
+\lstinputlisting[firstnumber=9, firstline=9,lastline=10]{PI1/Walker.java} 
+\lstinputlisting[firstnumber=14, firstline=14,lastline=16]{PI1/Walker.java}
+\lstinputlisting[firstnumber=25, firstline=25,lastline=26]{PI1/Walker.java} 
+\lstinputlisting[firstnumber=30, firstline=30,lastline=31]{PI1/Walker.java}
+\lstinputlisting[firstnumber=107, firstline=107,lastline=151]{PI1/Walker.java}
+\lstinputlisting[firstnumber=158, firstline=158,lastline=171]{PI1/Walker.java}
+
+• Implementierung in act(): 
+\lstinputlisting[firstnumber=9, firstline=9,lastline=10]{PI1/Walker.java} 
+\lstinputlisting[firstnumber=39, firstline=39,lastline=57]{PI1/Walker.java} 
+\lstinputlisting[firstnumber=79, firstline=79,lastline=79]{PI1/Walker.java} 
+\lstinputlisting[firstnumber=172, firstline=172,lastline=172]{PI1/Walker.java} 
+\end{document}
